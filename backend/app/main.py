@@ -5,6 +5,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.api.v1.endpoints import health
 from app.core.config import settings
 
+from app.middleware.correlation import CorrelationMiddleware
+app.add_middleware(CorrelationMiddleware)
+from app.core.logging_config import setup_logging
+setup_logging()
+
 app = FastAPI(
     title=settings.PROJECT_NAME,
     version=settings.VERSION,
